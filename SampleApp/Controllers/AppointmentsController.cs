@@ -24,7 +24,7 @@ namespace SampleApp.Controllers
             return View(await _context.Appointments.ToListAsync());
         }
 
-        // GET: Appointments/Details/5
+        // GET: Appointments/Details/5_
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
