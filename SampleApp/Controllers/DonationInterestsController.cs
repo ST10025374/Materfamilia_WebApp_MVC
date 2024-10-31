@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using SampleApp.Models;
 
 namespace SampleApp.Controllers
 {
+    [Authorize(Roles = "Client")]  //if uncommented only Client have access to the Donation Page
     public class DonationInterestsController : Controller
     {
         /// <summary>
