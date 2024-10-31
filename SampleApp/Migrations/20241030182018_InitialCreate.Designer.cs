@@ -12,7 +12,7 @@ using SampleApp.Models;
 namespace SampleApp.Migrations
 {
     [DbContext(typeof(MaterDBContext))]
-    [Migration("20241030120208_InitialCreate")]
+    [Migration("20241030182018_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
