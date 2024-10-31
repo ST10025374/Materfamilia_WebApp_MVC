@@ -1,8 +1,101 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif; /* Modern font */
+        background-color: #f8f9fa; /* Light background */
+        color: #000000; /* Default text color */
+    }
+
+    h1 {
+        color: #FBB03B; /* Title color */
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .founder-image {
+        max-height: 300px; /* Set max height for the image */
+        max-width: 300px;
+        border-radius: 15px; /* Rounded corners */
+        margin-bottom: 1rem; /* Margin below the image */
+    }
+
+    .bio-text {
+        color: #000000; /* Muted text color */
+        line-height: 1.6; /* Improved line spacing */
+        text-align: center; /* Centered text */
+        margin-bottom: 1.5rem; /* Margin below bio text */
+    }
+
+    .card {
+        border: none; /* Remove default card border */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        margin-bottom: 2rem; /* Margin below the card */
+    }
+
+    .vision-mission {
+        color: #999999; /* Gray color for vision and mission text */
+        text-align: center; /* Center alignment for vision and mission */
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-custom {
+        background-color: #FBB03B; /* Custom button color */
+        color: white; /* Button text color */
+        padding: 12px 24px; /* Increased padding for better visibility */
+        font-size: 1.2rem; /* Larger font size for visibility */
+        transition: background-color 0.3s; /* Transition effect */
+        margin-top: 2rem; /* Margin above button */
+        margin-bottom: 2rem; /* Margin below button */
+        text-decoration: none; /* Remove underline */
+    }
+
+        .btn-custom:hover {
+            background-color: #e0a800; /* Darker on hover */
+        }
+</style>
+
+<div class="container mt-5">
+    <h1 class="section-header">@ViewData["Title"]</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <!-- Founder Column -->
+                <div class="col-md-4 text-center">
+                    <img src="~/css/Founder.jpeg" alt="Welcome Image" class="founder-image img-fluid" />
+                    <h4 class="font-weight-bold">Founder</h4>
+                    <p class="bio-text">
+                        Ann Ligmann's journey is filled with personal victory,ironically, but victory is not achieved without battle. Many distressed females simply give up everything in the battle for social justice and become a burden on the state.
+                    </p>
+                </div>
+
+                <!-- Vision and Mission Column -->
+                <div class="col-md-8 text-center">
+                    <h2 class="vision-mission">Vision Statement</h2>
+                    <p class="vision-mission">
+                        To empower women to overcome adversity and navigate judicial and policing systems with confidence, ensuring they reclaim their lives and avoid becoming mere statistics. By transforming personal victory into collective empowerment, we strive to create a future where every woman can achieve justice and social equity.
+                    </p>
+
+                    <h2 class="vision-mission">Mission Statement</h2>
+                    <p class="vision-mission">
+                        Materfamilia is dedicated to empowering female-headed households in distress by providing tailored legal, financial, and coaching solutions. It works to restore these households to healthy economic status, reducing the burden on the state and addressing the social ills affecting women and vulnerable parties. Through our targeted interventions, we support African women in overcoming the challenges posed by religious, traditional, and legal structures, contributing to national and global efforts for social justice.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="#" class="btn btn-custom">Get Involved</a>
+    </div>
 </div>

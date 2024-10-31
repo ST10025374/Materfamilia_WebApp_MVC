@@ -1,48 +1,61 @@
 ﻿@model SampleApp.Models.Appointment
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Appointment page";
 }
 
-<h1>Create</h1>
+<div class="container mt-3">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <h4 class="text-center mb-4">Create a new Appointment</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-<h4>Appointment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ServiceType" class="control-label"></label>
-                <input asp-for="ServiceType" class="form-control" />
-                <span asp-validation-for="ServiceType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <!-- Service Type Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="ServiceType" class="form-control" placeholder="Service Type" />
+                    <label asp-for="ServiceType" class="form-label">Service Type</label>
+                    <span asp-validation-for="ServiceType" class="text-danger"></span>
+                </div>
+
+                <!-- Date Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="Date" type="datetime-local" class="form-control" />
+                    <label asp-for="Date" class="form-label">Appointment Date</label>
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Status Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="Status" class="form-control" placeholder="Status" />
+                    <label asp-for="Status" class="form-label">Status</label>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <!-- Notes Input -->
+                <div class="form-floating mb-4">
+                    <textarea asp-for="Notes" class="form-control" placeholder="Notes" rows="4"></textarea>
+                    <label asp-for="Notes" class="form-label">Notes</label>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mb-4">
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mb-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,6 +1,60 @@
 ﻿@model SampleApp.Models.DonationInterest
 
 @{
+    ViewData["Title"] = "Donation Interest";
+}
+
+<div class="container mt-3">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <h4 class="text-center mb-4">Fill in donation information</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- First Name Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <!-- Last Name Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <!-- Phone Number Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                    <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Amount Pledged Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="AmountPledged" class="form-control" placeholder="Amount Pledged" />
+                    <label asp-for="AmountPledged" class="form-label">Amount Pledged</label>
+                    <span asp-validation-for="AmountPledged" class="text-danger"></span>
+                </div>
+
+                <!-- Date Submitted Input -->
+                <div class="form-floating mb-4">
+                    <input asp-for="DateSubmitted" type="date" class="form-control" />
+                    <label asp-for="DateSubmitted" class="form-label">Date Submitted</label>
+                    <span asp-validation-for="DateSubmitted" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mb-4">
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                </div>
+            </form>
+        </div>
+
     ViewData["Title"] = "Create Donation Interest";
 }
 
@@ -46,11 +100,12 @@
                 <input type="submit" value="Submit Donation" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    </div>
+
+    <div class="text-center mb-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {
@@ -58,3 +113,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+}
+
