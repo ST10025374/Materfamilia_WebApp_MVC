@@ -84,18 +84,34 @@ namespace SampleApp.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MediaId,Type,Url,Description")] MediaContent mediaContent)
+        public async Task<IActionResult> Create(MediaContent mediaContent)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mediaContent);
-                await _context.SaveChangesAsync();
+                if (mediaContent.ImageFile != null && mediaContent.ImageFile.Length > 0)
+                {
+                    // Define the path to save the uploaded file
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", mediaContent.ImageFile.FileName);
+
+                    // Save the file
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await mediaContent.ImageFile.CopyToAsync(stream);
+                    }
+
+                    // Set the Url property to the relative path
+                    mediaContent.Url = "/images/" + mediaContent.ImageFile.FileName;
+
+                    // Save to the database (assuming you have a DbContext)
+                    _context.Add(mediaContent);
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(mediaContent);
         }
 
-        //---------------------------------------------------------------------//
         // GET: MediaContents/Edit/5
         /// <summary>
         /// Method to edit a media content
