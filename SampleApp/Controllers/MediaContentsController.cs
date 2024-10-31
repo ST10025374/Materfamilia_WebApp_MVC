@@ -10,7 +10,7 @@ using SampleApp.Models;
 
 namespace SampleApp.Controllers
 {
-    //[Authorize(Roles = "Admin")]  //if uncommented only Admin have access to the Media Page
+    [Authorize(Roles = "Admin")]  //if uncommented only Admin have access to the Media Page
     public class MediaContentsController : Controller
     {
         /// <summary>
