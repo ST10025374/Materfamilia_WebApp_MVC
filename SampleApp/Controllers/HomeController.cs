@@ -39,8 +39,28 @@ namespace SampleApp.Controllers
         /// Method to get the privacy page
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]// Only for privacy
+        //[Authorize(Roles = "Admin")]// Only for privacy
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the About page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the ContactUs page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ContactUs()
         {
             return View();
         }
