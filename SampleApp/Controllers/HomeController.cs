@@ -7,29 +7,69 @@ using System.Diagnostics;
 
 namespace SampleApp.Controllers
 {
-
-    //[Authorize(Roles = "Admin")]  //This is for the whole 
+    //[Authorize(Roles = "Admin")]  //if uncommented only Admin have access to the home page
     public class HomeController : Controller
     {
+        /// <summary>
+        /// The logger for the home controller
+        /// </summary>
         private readonly ILogger<HomeController> _logger;
 
+        /// <summary>
+        /// Method to initialize the home controller
+        /// </summary>
+        /// <param name="logger"></param>
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the index page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
         }
 
-
-        [Authorize(Roles = "Admin")]// Only for privacy
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the privacy page
+        /// </summary>
+        /// <returns></returns>
+        //[Authorize(Roles = "Admin")]// Only for privacy
         public IActionResult Privacy()
         {
             return View();
         }
 
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the About page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the ContactUs page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to get the error page    
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -37,3 +77,4 @@ namespace SampleApp.Controllers
         }
     }
 }
+//**------------------------------------------------------------< END >------------------------------------------------------------**// 

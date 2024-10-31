@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,22 +10,41 @@ using SampleApp.Models;
 
 namespace SampleApp.Controllers
 {
+    [Authorize(Roles = "Admin")]  //if uncommented only Admin have access to the Media Page
     public class MediaContentsController : Controller
     {
+        /// <summary>
+        /// The database context for media contents.
+        /// </summary>
         private readonly MaterDBContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaContentsController"/> class.
+        /// </summary>
+        /// <param name="context"></param>
         public MediaContentsController(MaterDBContext context)
         {
             _context = context;
         }
 
+        //---------------------------------------------------------------------//
         // GET: MediaContents
+        /// <summary>
+        /// Method to get all media contents
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.MediaContents.ToListAsync());
         }
 
+        //---------------------------------------------------------------------//
         // GET: MediaContents/Details/5
+        /// <summary>
+        /// Method to get the details of a media content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,29 +62,62 @@ namespace SampleApp.Controllers
             return View(mediaContent);
         }
 
+        //---------------------------------------------------------------------//
         // GET: MediaContents/Create
+        /// <summary>
+        /// Method to create a media content
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             return View();
         }
 
+        //---------------------------------------------------------------------//
         // POST: MediaContents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Method to create a media content
+        /// </summary>
+        /// <param name="mediaContent"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MediaId,Type,Url,Description")] MediaContent mediaContent)
+        public async Task<IActionResult> Create(MediaContent mediaContent)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mediaContent);
-                await _context.SaveChangesAsync();
+                if (mediaContent.ImageFile != null && mediaContent.ImageFile.Length > 0)
+                {
+                    // Define the path to save the uploaded file
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", mediaContent.ImageFile.FileName);
+
+                    // Save the file
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await mediaContent.ImageFile.CopyToAsync(stream);
+                    }
+
+                    // Set the Url property to the relative path
+                    mediaContent.Url = "/images/" + mediaContent.ImageFile.FileName;
+
+                    // Save to the database (assuming you have a DbContext)
+                    _context.Add(mediaContent);
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(mediaContent);
         }
 
         // GET: MediaContents/Edit/5
+        /// <summary>
+        /// Method to edit a media content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +133,16 @@ namespace SampleApp.Controllers
             return View(mediaContent);
         }
 
+        //---------------------------------------------------------------------//
         // POST: MediaContents/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Method to edit a media content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="mediaContent"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MediaId,Type,Url,Description")] MediaContent mediaContent)
@@ -115,7 +175,13 @@ namespace SampleApp.Controllers
             return View(mediaContent);
         }
 
+        //---------------------------------------------------------------------//
         // GET: MediaContents/Delete/5
+        /// <summary>
+        /// Method to delete a media content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +199,13 @@ namespace SampleApp.Controllers
             return View(mediaContent);
         }
 
+        //---------------------------------------------------------------------//
         // POST: MediaContents/Delete/5
+        /// <summary>
+        /// Method to delete a media content
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -148,9 +220,16 @@ namespace SampleApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //---------------------------------------------------------------------//
+        /// <summary>
+        /// Method to check if a media content exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool MediaContentExists(int id)
         {
             return _context.MediaContents.Any(e => e.MediaId == id);
         }
     }
 }
+//**------------------------------------------------------------< END >------------------------------------------------------------**// 
