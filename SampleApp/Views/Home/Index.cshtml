@@ -6,62 +6,117 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+
+
+    /* Base styling */
     body {
-        font-family: 'Open Sans', sans-serif; /* Modern font */
-        background-color: #f8f9fa; /* Light background */
-        color: #000000; /* Default text color */
+        font-family: 'Open Sans', sans-serif; /* Custom body font */
+        background-color: #f8f9fa;
+        color: #000000;
+    }
+
+    /* Bootstrap default font for headings */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Bootstrap's heading font */
+        font-weight: 500; /* Default weight from Bootstrap */
+        line-height: 1.2; /* Default line height from Bootstrap */
+        color: var(--bs-heading-color); /* Bootstrap's heading color */
+        margin-top: 0; /* Remove top margin */
+        margin-bottom: 0.5rem; /* Default bottom margin */
     }
 
     h1 {
-        color: #FBB03B; /* Title color */
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .founder-image {
-        max-height: 300px; /* Set max height for the image */
-        max-width: 300px;
-        border-radius: 15px; /* Rounded corners */
-        margin-bottom: 1rem; /* Margin below the image */
-    }
-
-    .bio-text {
-        color: #000000; /* Muted text color */
-        line-height: 1.6; /* Improved line spacing */
-        text-align: center; /* Centered text */
-        margin-bottom: 1.5rem; /* Margin below bio text */
-    }
-
-    .card {
-        border: none; /* Remove default card border */
-        border-radius: 15px; /* Rounded corners */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        margin-bottom: 2rem; /* Margin below the card */
+        color: #FBB03B; /* Specific color for h1 */
+        font-size: 2.5rem; /* Adjust font size for h1 */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Shadow for fading effect */
     }
 
     .vision-mission {
-        color: #999999; /* Gray color for vision and mission text */
-        text-align: center; /* Center alignment for vision and mission */
+        color: gray; /* Updated to gray */
+        text-align: center;
         margin-bottom: 1.5rem;
+        text-align: left;
+        font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Bootstrap's heading font */
+        font-weight: 400; /* Lighter weight for subheadings */
+        line-height: 1.5; /* Increased line height for readability */
+        transition: color 0.5s ease; /* Smooth transition for color change */
+    }
+
+    .section-header {
+        color: rgba(51, 51, 51, 0.9); /* Slightly transparent color for section header */
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Shadow for fading effect */
+    }
+
+    .founder-image {
+        max-height: 300px;
+        max-width: 300px;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
     }
 
     .btn-custom {
-        background-color: #FBB03B; /* Custom button color */
-        color: white; /* Button text color */
-        padding: 12px 24px; /* Increased padding for better visibility */
-        font-size: 1.2rem; /* Larger font size for visibility */
-        transition: background-color 0.3s; /* Transition effect */
-        margin-top: 2rem; /* Margin above button */
-        margin-bottom: 2rem; /* Margin below button */
-        text-decoration: none; /* Remove underline */
+        background-color: #FBB03B;
+        color: white;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-top: 1rem;
+        text-decoration: none;
     }
 
         .btn-custom:hover {
-            background-color: #e0a800; /* Darker on hover */
+            background-color: #e0a800;
+            transform: translateY(-3px); /* Lift effect on hover */
         }
+
+    .user-story-section {
+        padding: 2rem 0;
+    }
+
+    .user-story-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin: 1rem auto;
+        height: 100%; /* Ensure all cards have the same height */
+    }
+
+    .user-story-img {
+        border-radius: 10px 10px 0 0;
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .user-story-text {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .summary-card {
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    /* New styles for the Donate Now cards */
+    .donate-card {
+        flex: 1; /* Make the cards flex-grow to fill space */
+        margin: 1rem; /* Add margin for spacing */
+        min-width: 0; /* Prevent overflow issues */
+    }
 </style>
 
 <div class="container mt-5">
@@ -70,32 +125,101 @@
     <div class="card mb-4">
         <div class="card-body">
             <div class="row align-items-center">
-                <!-- Founder Column -->
                 <div class="col-md-4 text-center">
                     <img src="~/css/Founder.jpeg" alt="Welcome Image" class="founder-image img-fluid" />
                     <h4 class="font-weight-bold">Founder</h4>
-                    <p class="bio-text">
-                        Ann Ligmann's journey is filled with personal victory,ironically, but victory is not achieved without battle. Many distressed females simply give up everything in the battle for social justice and become a burden on the state.
+                    <p class="vision-mission">
+                        Ann Ligmann's journey is filled with personal victory, ironically, but victory is not achieved without battle. Distressed females simply give up everything in the battle for social justice and become a burden on the state.
                     </p>
                 </div>
 
-                <!-- Vision and Mission Column -->
-                <div class="col-md-8 text-center">
-                    <h2 class="vision-mission">Vision Statement</h2>
+                <div class="col-md-8">
+                    <h2 class="card-title text-center">Vision Statement</h2>
                     <p class="vision-mission">
                         To empower women to overcome adversity and navigate judicial and policing systems with confidence, ensuring they reclaim their lives and avoid becoming mere statistics. By transforming personal victory into collective empowerment, we strive to create a future where every woman can achieve justice and social equity.
                     </p>
 
-                    <h2 class="vision-mission">Mission Statement</h2>
+                    <h2 class="card-title text-center">Mission Statement</h2>
                     <p class="vision-mission">
                         Materfamilia is dedicated to empowering female-headed households in distress by providing tailored legal, financial, and coaching solutions. It works to restore these households to healthy economic status, reducing the burden on the state and addressing the social ills affecting women and vulnerable parties. Through our targeted interventions, we support African women in overcoming the challenges posed by religious, traditional, and legal structures, contributing to national and global efforts for social justice.
                     </p>
+                    <div>
+                        <a href="../Views/MediaContents/Index.cshtml" class="btn btn-custom" style="width: 100%; padding: 15px;">Get Involved</a> 
+                    </div>
+                </div>
+            </div>            
+        </div>       
+    </div>
+
+    <div class="card mt-4 summary-card">
+        <div class="card-body text-center">
+            <h1 class="section-header">OUR CAUSES</h1>
+            <div class="container user-story-section mt-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card user-story-card">
+                            <img src="~/css/User story.jpeg" alt="User Story Image 1" class="user-story-img img-fluid rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">Leadership Seminar</h5>
+                                <p class="card-text">"With a mission to empower young women, ignite leadership skills, build confidence, and equip participants with tools to navigate the challenges and opportunities they’ll face beyond."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card user-story-card">
+                            <img src="~/css/User story (2).jpeg" alt="User Story Image 2" class="user-story-img img-fluid rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">Coaching</h5>
+                                <p class="card-text">"Focused on fostering resilience, financial independence, and personal growth, this program pairs participants with skilled coaches who provide personalized guidance and resources."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card user-story-card">
+                            <img src="~/css/Mentoring.jpeg" alt="User Story Image 3" class="user-story-img img-fluid rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">Mentoring</h5>
+                                <p class="card-text">"With a focus on long-term empowerment, MaterFamilia mentors provide insights on career pathways, educational opportunities, and overcoming social and legal obstacles."</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="text-center">
-        <a href="#" class="btn btn-custom">Get Involved</a>
+    <!-- Support div -->
+    <div class="card mt-2 summary-card">
+        <div class="card-body text-center">
+            <h2 class="section-header">SUPPORT OUR WORK</h2>
+            <div class="row user-story-section justify-content-center">
+                <div class="col-md-5 donate-card">
+                    <div class="card user-story-card">
+                        <img src="~/css/donate.jpeg" alt="Donate Now Image 1" class="user-story-img img-fluid rounded" />
+                        <div class="card-body">
+                            <h5 class="card-title">One-Time Donation</h5>
+                            <p class="card-text">"Your contribution helps us support women in need with legal and financial assistance. Thank you for your generosity!"</p>
+                            
+                        </div>
+                        <a href="../Views/DonationInterests/Create.cshtml" class="btn btn-custom" style="width: 100%; padding: 15px;">Donate now</a> <!-- Full-width button -->
+                    </div>
+                </div>
+
+                <div class="col-md-5 donate-card">
+                    <div class="card user-story-card">
+                        <img src="~/css/donation.jpeg" alt="Donate Now Image 2" class="user-story-img img-fluid rounded" />
+                        <div class="card-body">
+                            <h5 class="card-title">Monthly Giving</h5>
+                            <p class="card-text">"Become a monthly donor and provide ongoing support to women facing challenges. Your consistent help makes a difference!"</p>
+                            
+                        </div>
+                        <a href="../Views/DonationInterests/Create.cshtml" class="btn btn-custom" style="width: 100%; padding: 15px;">Donate now</a> <!-- Full-width button -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
