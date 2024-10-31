@@ -1,0 +1,16 @@
+﻿@model SampleApp.Models.MediaContent
+
+<h2>Edit Media Content</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MediaId" />
+    <div class="form-group">
+        <label>Type</label>
+        <input asp-for="Type" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -37,22 +37,20 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-secondary" asp-controller="DonationInterests" asp-action="Index">Donate</a>
-                            <a class="nav-link text-secondary" asp-controller="Appointments" asp-action="Index">Make an appointment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" asp-controller="DonationInterests" asp-action="Index">Donate</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUs">ContactUs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Appointments" asp-action="Create" asp-action="Create" asp-route-id="1">Book appointment</a>
-                        </li>
-                      
-                        <li class="nav-item">
                             <a class="nav-link text-secondary" asp-controller="MediaContents" asp-action="Index" asp-route-id="1">Gallery</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="MediaAdmin" asp-action="Index" asp-route-id="1">Administration</a>
+                        </li>
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
