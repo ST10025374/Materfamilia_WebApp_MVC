@@ -72,13 +72,20 @@ public partial class MaterDBContext : IdentityDbContext
             entity.ToTable("MediaContent");
 
             entity.Property(e => e.Description).IsUnicode(false);
+
             entity.Property(e => e.Type)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Url)
-                .IsUnicode(false)
-                .HasColumnName("URL");
+
+            // Configure ImageFileName and ImageData
+            entity.Property(e => e.ImageFileName)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+
+            entity.Property(e => e.ImageData)
+                .HasColumnType("varbinary(max)"); 
         });
+
 
         OnModelCreatingPartial(modelBuilder);
     }

@@ -7,7 +7,7 @@
     <title>@ViewData["Title"] - SampleApp</title>
 
     <!-- Local and Bootstrap CSS -->
-    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/KindHeart.css" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SampleApp.styles.css" asp-append-version="true" />
@@ -37,24 +37,20 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-secondary" asp-controller="DonationInterests" asp-action="Index">Donate</a>
-                            <a class="nav-link text-secondary" asp-controller="Appointments" asp-action="Index">Make an appointment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" asp-controller="DonationInterests" asp-action="Index">Donate</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUs">ContactUs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Appointments" asp-action="Create" asp-action="Create" asp-route-id="1">Book appointment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="DonationInterests" asp-action="Create" asp-action="Create" asp-route-id="1">Donate</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-secondary" asp-controller="MediaContents" asp-action="Index" asp-route-id="1">Gallery</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="MediaAdmin" asp-action="Index" asp-route-id="1">Administration</a>
+                        </li>
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

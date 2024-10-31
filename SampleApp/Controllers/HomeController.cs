@@ -44,6 +44,14 @@ namespace SampleApp.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// Method 
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult MediaAdmin()
+        {
+            return View();
+        }
 
         //---------------------------------------------------------------------//
         /// <summary>
