@@ -34,7 +34,8 @@ namespace SampleApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); // Redirects all HTTP requests to HTTPS thus which
+                                       // enables SSL/TLS encryption for all communications between the client (browser) and the server.
             app.UseStaticFiles();
 
             app.UseRouting();
