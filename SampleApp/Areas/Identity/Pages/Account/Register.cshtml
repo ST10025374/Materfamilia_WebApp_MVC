@@ -9,7 +9,6 @@
 <link href="~/css/bootstrap.css" rel="stylesheet">
 
 <div class="container mt-3 mb-5">
-    <!-- Added margin-bottom for spacing -->
     <div class="row justify-content-center">
         <div class="col-md-5">
             <h1 class="text-center mb-4">@ViewData["Title"]</h1>
@@ -19,7 +18,6 @@
                         <h5 class="text-center mb-3">Create a new account</h5>
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger text-center" role="alert"></div>
-
 
                         <!-- Email Input -->
                         <div class="form-floating mb-3">
@@ -33,52 +31,6 @@
                             <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
                             <label asp-for="Input.Password">Password</label>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
-
-            @* To activate ability to choose role comment this, uncoment the code bellow*@
-            <div class="form-floating mb-3">
-                <input type="hidden" asp-for="Input.Role" value="Client" />
-                <span asp-validation-for="Input.Role" class="text-danger"></span>
-            </div>
-
-            @* Deactivated ability to user to choose role when registering *@
-             @* <div class="form-floating mb-3">
-                <select asp-for="Input.Role" class="form-control" autocomplete="role" aria-required="true" placeholder="role" >
-                     <option value="Admin">Admin</option> 
-                     <option value="Client">Client</option>
-                     <option value="Employee">Employee</option> 
-                </select>
-
-                <label asp-for="Input.Role">Select Role</label>
-                <span asp-validation-for="Input.Role" class="text-danger"></span>
-            </div> *@
-
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
                         </div>
 
                         <!-- Confirm Password Input -->
@@ -88,17 +40,25 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <!-- Role Selection -->
+                        <!-- Hidden Role Input -->
                         <div class="form-floating mb-3">
-                            <select asp-for="Input.Role" class="form-select" aria-required="true" placeholder="Select Role">
-                                <option value="">Select Role</option> <!-- Placeholder -->
-                                <option value="Admin">Admin</option>
-                                <option value="Client">Client</option>
-                                <option value="Employee">Employee</option>
-                            </select>
-                            <label asp-for="Input.Role">Select Role</label>
+                            <input type="hidden" asp-for="Input.Role" value="Client" />
                             <span asp-validation-for="Input.Role" class="text-danger"></span>
                         </div>
+
+                        <!-- Role Selection (Optional: Uncomment if needed) -->
+                        @*
+                        <div class="form-floating mb-3">
+                        <select asp-for="Input.Role" class="form-select" aria-required="true" placeholder="Select Role">
+                        <option value="">Select Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Client">Client</option>
+                        <option value="Employee">Employee</option>
+                        </select>
+                        <label asp-for="Input.Role">Select Role</label>
+                        <span asp-validation-for="Input.Role" class="text-danger"></span>
+                        </div>
+                        *@
 
                         <!-- Register Button -->
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>

@@ -8,10 +8,13 @@ public partial class MediaContent
 {
     public int MediaId { get; set; }
     public string Type { get; set; }
-    public string Url { get; set; }
-    public string Description { get; set; } 
+    public string Description { get; set; }
 
-    // Add this property if you want to bind the uploaded file
-    [NotMapped] // Ensure this is not mapped to the database
+    // New properties for storing the image in the database
+    public byte[] ImageData { get; set; }
+    public string ImageFileName { get; set; }
+
+    // Property for the uploaded file in the form
+    [NotMapped]
     public IFormFile ImageFile { get; set; }
 }

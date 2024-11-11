@@ -8,32 +8,41 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>MediaContent</h4>
+    <h4>Media Content</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Type)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Url)
+        <dt class="col-sm-2">
+            Image
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Url)
+        <dd class="col-sm-10">
+            @if (Model.ImageData != null)
+            {
+                var base64Image = Convert.ToBase64String(Model.ImageData);
+                var imageSrc = $"data:image/jpeg;base64,{base64Image}";
+                <img src="@imageSrc" alt="Media Image" width="150" />
+            }
+            else
+            {
+                <p>No image available</p>
+            }
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
+
+    <form asp-action="DeleteConfirmed">
         <input type="hidden" asp-for="MediaId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </form>
 </div>

@@ -12,8 +12,8 @@ using SampleApp.Models;
 namespace SampleApp.Migrations
 {
     [DbContext(typeof(MaterDBContext))]
-    [Migration("20241030182018_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241031194503_AddImageDataAndFileName")]
+    partial class AddImageDataAndFileName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -301,18 +301,25 @@ namespace SampleApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MediaId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageFileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Url")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)")
-                        .HasColumnName("URL");
 
                     b.HasKey("MediaId");
 
